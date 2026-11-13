@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Отправка заявки</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>📨 Отправка заявки</h1>
+    <p class="subtitle">Заполните форму — письмо будет отправлено через Gmail SMTP.</p>
+
+    <form id="contactForm" novalidate>
+      <label for="name">Имя</label>
+      <input id="name" name="name" type="text" required placeholder="Иван Иванов" autocomplete="name" />
+
+      <label for="email">Ваш email</label>
+      <input id="email" name="email" type="email" required placeholder="ivan@example.com" autocomplete="email" />
+
+      <label for="subject">Тема</label>
+      <input id="subject" name="subject" type="text" required placeholder="Тема заявки" />
+
+      <label for="message">Текст заявки</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Опишите ваш вопрос…"></textarea>
+
+      <button type="submit" id="submitBtn">Отправить</button>
+    </form>
+
+    <!-- Status banner -->
+    <div id="status" class="status hidden" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="/script.js"></script>
+</body>
+</html>

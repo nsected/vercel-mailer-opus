@@ -1,0 +1,21 @@
+{
+  "name": "vercel-mailer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimal contact form with Gmail SMTP via Vercel Fluid Compute",
+  "engines": {
+    "node": ">=20.x"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.0"
+  },
+  "devDependencies": {
+    "vercel": "^39.0.0"
+  }
+}
