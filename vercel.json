@@ -7,7 +7,8 @@
     }
   },
   "rewrites": [
-    { "source": "/(.*)", "destination": "/public/$1" }
+    { "source": "/send-lead", "destination": "/api/send" },
+    { "source": "/send-lead-course", "destination": "/api/send" }
   ],
   "headers": [
     {

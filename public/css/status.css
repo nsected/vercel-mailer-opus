@@ -1,0 +1,82 @@
+/* =================================================================
+   Mailer Status & Feedback Styles
+   ================================================================= */
+
+.mailer-status {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+  margin-top: 1rem;
+}
+
+.mailer-status.hidden {
+  display: none !important;
+}
+
+.mailer-status.waiting {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.mailer-status.sending {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.mailer-status.retrying {
+  background-color: #fefce8;
+  color: #854d0e;
+  border: 1px solid #fef08a;
+}
+
+.mailer-status.accepted {
+  background-color: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  font-weight: 500;
+}
+
+.mailer-status.error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.mailer-status.unknown {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fde68a;
+}
+
+/* Spinner helper */
+.mailer-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: mailer-spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+@keyframes mailer-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Honeypot field — invisible to real users */
+.site_url {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}

@@ -1,206 +1,140 @@
-# 📨 Vercel Mailer — отправка заявок через Gmail SMTP
+# 📨 Vercel Mailer & Landing — сайт и отправка заявок через Gmail SMTP
 
-Минимальный рабочий пример: HTML-форма → Vercel Serverless Function (Fluid Compute) → Gmail SMTP (Nodemailer).
+Полноценный лендинг «Ходить хорошо» со статической раздачей через Vercel и Serverless Functions (Fluid Compute) для отправки заявок через Gmail SMTP (Nodemailer).
 
 ## Архитектура
 
 ```
-┌──────────────┐   POST /api/send   ┌──────────────────────┐   SMTP   ┌───────────┐
-│  Browser     │ ─────────────────▸ │  Vercel Function     │ ───────▸ │  Gmail    │
-│  (HTML+JS)   │ ◂───── JSON ────── │  (Node.js + Fluid)   │          │  SMTP     │
-└──────────────┘                    └──────────────────────┘          └───────────┘
+┌─────────────────────────┐   POST /api/send   ┌──────────────────────┐   SMTP   ┌───────────┐
+│  Browser / Landing      │ ─────────────────▸ │  Vercel Function     │ ───────▸ │  Gmail    │
+│  (HTML+CSS+JS статика)  │ ◂───── JSON ────── │  (Node.js + Fluid)   │          │  SMTP     │
+└─────────────────────────┘                    └──────────────────────┘          └───────────┘
 ```
 
 **Ключевые решения:**
 
 | Компонент | Выбор | Почему |
 |---|---|---|
-| Hosting | Vercel | Бесплатный tier, авто-деплой, Functions из коробки |
-| Compute | Fluid Compute | Тарификация по CPU-time, переиспользование warm-инстансов |
-| Email | Nodemailer + Gmail SMTP | Не нужны сторонние API, App Password |
-| Idempotency | Клиент (UUID) + сервер (in-memory cache) | Дублирование при retry невозможно, пока инстанс жив |
+| Hosting | Vercel | Автоматическая раздача статики (`public/`), быстрый CDN, Functions из коробки |
+| Compute | Fluid Compute | Тарификация по CPU-time, долгие warm-инстансы, быстрое выполнение |
+| Email | Nodemailer + Gmail SMTP | Прямая отправка без сторонних платных сервисов (Resend/SendGrid) |
+| Idempotency | Клиент (UUID) + сервер (in-memory cache) | Предотвращение дублей при повторных кликах и сетевых ретраях |
+| Antispam | Honeypot (`site_url`) | Боты заполняют скрытое поле и получают фиктивный успех без спама |
 
 ---
 
-## 1. Переменные окружения
+## 1. Формы лендинга
 
-| Переменная | Описание | Пример |
+1. **Заказ курса «Ходить хорошо»** (модальное окно `#courseModal`):
+   - Имя (`name`)
+   - Телефон (`phone`)
+   - Скрытое поле от спама (`site_url`)
+   - Товар: Авторский курс «Ходить хорошо» (2100 ₽)
+
+2. **Заявка на занятие** (модальное окно `#leadModal`):
+   - Имя (`name`)
+   - Телефон (`phone`)
+   - Рост (`height`)
+   - Цель занятий (`goal` — radio: «Освоить технику», «Оздоровление», «Коррекция веса», «Доктор прописал»)
+   - Скрытое поле от спама (`site_url`)
+
+---
+
+## 2. Статусы отправки и повторные попытки
+
+В интерфейсе пользователя отображаются все 6 состояний:
+
+| Состояние | Вид в интерфейсе | Описание |
 |---|---|---|
-| `SMTP_HOST` | SMTP-сервер | `smtp.gmail.com` |
-| `SMTP_PORT` | Порт | `465` |
-| `SMTP_SECURE` | TLS | `true` |
-| `SMTP_USER` | Email аккаунта Gmail | `you@gmail.com` |
-| `SMTP_PASS` | [Пароль приложения Google](#2-настройка-gmail-smtp) | `abcd efgh ijkl mnop` |
-| `RECIPIENT_EMAIL` | Куда приходят заявки | `admin@example.com` |
-
-> **Файл `.env.example`** — шаблон без реальных паролей. Скопируйте в `.env` и заполните.
+| **Ожидание** | `⏳ Ожидание…` | Форма валидирована, подготавливается запрос |
+| **Отправка** | `<spinner> Отправка…` | Запрос передан на сервер Vercel |
+| **Повторная попытка** | `<spinner> Повторная попытка N из 3…` | При временных сетевых или SMTP ошибках (4xx) с нарастающим интервалом (2с, 4с) |
+| **Принято почтовым сервером** | `✅ Письмо принято почтовым сервером.` | Успешный ответ SMTP, форма очищается и открывается окно `#successModal` |
+| **Ошибка отправки** | `❌ Ошибка отправки: ...` | Постоянная ошибка (неверный адрес, авторизация SMTP) |
+| **Неопределённый результат** | `⚠️ Неопределённый результат: ...` | Все 3 попытки исчерпаны без подтверждения от сервера |
 
 ---
 
-## 2. Настройка Gmail SMTP
+## 3. Переменные окружения
 
-### 2.1 Включите двухфакторную аутентификацию
+Создайте `.env` в корне проекта (на основе `.env.example`):
 
-1. [myaccount.google.com/security](https://myaccount.google.com/security)
-2. Раздел **«Вход в аккаунт Google»** → **Двухэтапная аутентификация** → Включить.
+```ini
+# ── SMTP (Gmail) ─────────────────────────────────────────
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=abcd efgh ijkl mnop
 
-### 2.2 Создайте пароль приложения
+# ── Получатель заявок ────────────────────────────────────
+RECIPIENT_EMAIL=recipient@example.com
 
-1. [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
-2. **Приложение** → `Почта`, **Устройство** → `Другое` → введите `VercelMailer`.
-3. Нажмите **Создать**.
-4. Скопируйте 16-символьный код (формат `abcd efgh ijkl mnop`).
-5. Вставьте его в `SMTP_PASS` (с пробелами или без — оба варианта работают).
+# ── Отладка в консоли Vercel (по умолчанию включена) ─────
+DEBUG=true
+```
 
 ---
 
-## 3. Локальный запуск
+## 4. Настройка Gmail SMTP и пароля приложения
+
+1. Включите **двухэтапную аутентификацию** в аккаунте Google: [myaccount.google.com/security](https://myaccount.google.com/security).
+2. Перейдите в раздел **Пароли приложений**: [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
+3. Создайте новый пароль (название: `VercelMailer`).
+4. Скопируйте 16-значный пароль в переменную `SMTP_PASS`.
+
+---
+
+## 5. Локальный запуск
 
 ```bash
-# 1. Клонируйте и установите зависимости
-git clone <repo-url>
-cd vercel-mailer-opus
+# Установка зависимостей
 npm install
 
-# 2. Создайте .env
-cp .env.example .env
-# Заполните SMTP_USER, SMTP_PASS, RECIPIENT_EMAIL
-
-# 3. Запустите Vercel Dev
+# Запуск локального сервера Vercel Dev
 npx vercel dev
-# → http://localhost:3000
 ```
 
-> **Vercel Dev** читает `.env` автоматически и эмулирует Serverless Functions локально.
-
-Откройте `http://localhost:3000`, заполните форму и отправьте тестовую заявку.
+Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
 ---
 
-## 4. Развёртывание на Vercel
-
-### 4.1 Первый деплой
+## 6. Развёртывание на Vercel
 
 ```bash
-npx vercel          # Preview-деплой, следуйте интерактивным вопросам
-npx vercel --prod   # Production-деплой
+# 1. Авторизация
+npx vercel login
+
+# 2. Добавление секретов в Vercel
+npx vercel env add SMTP_HOST
+npx vercel env add SMTP_PORT
+npx vercel env add SMTP_SECURE
+npx vercel env add SMTP_USER
+npx vercel env add SMTP_PASS
+npx vercel env add RECIPIENT_EMAIL
+
+# 3. Деплой в Production
+npx vercel --prod
 ```
-
-Или подключите GitHub-репозиторий в [vercel.com/new](https://vercel.com/new) — деплой при каждом push.
-
-### 4.2 Переменные окружения в Vercel
-
-```bash
-# Через CLI
-npx vercel env add SMTP_HOST       # введите smtp.gmail.com
-npx vercel env add SMTP_PORT       # введите 465
-npx vercel env add SMTP_SECURE     # введите true
-npx vercel env add SMTP_USER       # ваш Gmail
-npx vercel env add SMTP_PASS       # пароль приложения (sensitive)
-npx vercel env add RECIPIENT_EMAIL # email получателя
-```
-
-Или в Dashboard: **Project → Settings → Environment Variables**.
-
-> После добавления переменных — сделайте **Redeploy** для их применения.
 
 ---
 
-## 5. Fluid Compute
+## 7. Fluid Compute
 
-### Что это
+Включение Fluid Compute контролируется файлом `vercel.json`:
 
-Fluid Compute меняет модель тарификации:
-- **CPU time** — вы платите только за активное выполнение кода (не за ожидание I/O).
-- **Provisioned memory** — более низкий тариф за RAM на всё время запроса.
-- Warm-инстансы **переиспользуются** — in-memory кеш идемпотентности живёт дольше.
-
-### Как включено
-
-В `vercel.json`:
 ```json
 {
-  "fluid": true
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "fluid": true,
+  "functions": {
+    "api/**": {
+      "maxDuration": 30
+    }
+  }
 }
 ```
 
-### Проверка работы
-
-1. **Dashboard** → Project → **Logs** → посмотрите строки функций `api/send`.
-2. **Dashboard** → Project → **Settings → Functions** — убедитесь, что Fluid Compute включён.
-3. **Dashboard** → Project → **Usage** → раздел «Function Execution» — вы увидите разделение на CPU Time и Duration.
-
-> При Fluid Compute нельзя задавать `memory` в `vercel.json` — управление памятью происходит через Dashboard → Settings → Functions → Function CPU.
-
----
-
-## 6. Логика работы
-
-### Клиент (script.js)
-
-1. При отправке формы генерируется **idempotency key** (UUID v4).
-2. Если пользователь отправляет те же данные повторно — используется тот же ключ.
-3. При **временной ошибке** или **ошибке сети** — до 3 попыток с экспоненциальным backoff (2 с → 4 с).
-4. Состояния, отображаемые пользователю:
-
-| Состояние | Что происходит |
-|---|---|
-| ⏳ Ожидание | Запрос подготовлен |
-| 🔄 Отправка | Запрос ушёл на сервер |
-| 🔁 Повторная попытка | Временная ошибка, ждём и пробуем снова |
-| ✅ Принято | SMTP-сервер подтвердил приём |
-| ❌ Ошибка | Постоянная ошибка (неверный адрес, конфигурация и т.д.) |
-| ⚠️ Неопределённый результат | Все попытки исчерпаны, статус неизвестен |
-
-### Сервер (api/send.js)
-
-1. Принимает POST с `idempotencyKey`.
-2. Проверяет in-memory кеш — если уже обработано, возвращает сохранённый результат.
-3. Отправляет письмо через Nodemailer.
-4. Классифицирует ошибки:
-   - **Временные** (SMTP 4xx, ECONNRESET, ETIMEDOUT) → 503, `retryable: true`.
-   - **Постоянные** (SMTP 5xx, авторизация) → 502, `retryable: false`.
-
----
-
-## 7. Проверка логов
-
-### Локально
-
-Логи выводятся в терминал при `vercel dev`. Ищите строки `[send] SMTP error:`.
-
-### На Vercel
-
-1. **Dashboard** → Project → **Logs**.
-2. Фильтр: **Functions** → `api/send`.
-3. Или через CLI:
-   ```bash
-   npx vercel logs <deployment-url>
-   ```
-
----
-
-## 8. Структура проекта
-
-```
-vercel-mailer-opus/
-├── api/
-│   └── send.js          # Serverless Function: приём заявки, отправка через SMTP
-├── public/
-│   ├── index.html        # Форма заявки
-│   ├── style.css         # Стили
-│   └── script.js         # Клиентская логика: retry, idempotency, статусы
-├── vercel.json           # Конфигурация Vercel (Fluid Compute, rewrites)
-├── package.json          # Зависимости (nodemailer)
-├── .env.example          # Шаблон переменных окружения
-├── .gitignore            # Игнорируемые файлы
-└── README.md             # Эта документация
-```
-
----
-
-## 9. Ограничения и заметки
-
-- **Gmail SMTP** подходит для тестирования и небольших объёмов (до ~500 писем/сутки). Для production рекомендуется Resend, SendGrid или AWS SES.
-- **Idempotency-кеш на сервере** — in-memory, сбрасывается при холодном старте. С Fluid Compute инстансы живут дольше, но кеш не персистентен. Клиентская сторона компенсирует это, сохраняя ключи пока открыта вкладка.
-- **`from`** — Gmail перезаписывает поле «от кого» на адрес аккаунта. Email отправителя из формы ставится в `Reply-To`.
+Проверка использования Fluid Compute:
+- В Vercel Dashboard перейдите в **Project Settings → Functions → Fluid Compute**.
+- В разделе **Usage** видно разделение на активный CPU Time и общее время выполнения.
