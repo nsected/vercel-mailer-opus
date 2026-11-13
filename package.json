@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Express contact form with Gmail SMTP for Vercel, Render, or a VPS",
+  "description": "Express contact form with Gmail SMTP for Vercel, Netlify, Render, or a VPS",
   "engines": {
     "node": ">=20.6.0"
   },
