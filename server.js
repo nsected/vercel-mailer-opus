@@ -1,11 +1,15 @@
 import express from "express";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import apiRouter, { getSendStatus, sendForm } from "./src/routes/api.js";
 
 const app = express();
-const currentFile = fileURLToPath(import.meta.url);
-const publicDirectory = path.join(path.dirname(currentFile), "public");
+// deprecated: fileURLToPath(import.meta.url) is not reliable in Netlify's
+// CommonJS-bundled Functions, where import.meta.url may become undefined.
+// Resolve paths from the project root instead; Netlify, Vercel, Render, and
+// npm scripts run this application with the repository root as process.cwd().
+const projectRoot = process.cwd();
+const currentFile = path.join(projectRoot, "server.js");
+const publicDirectory = path.join(projectRoot, "public");
 
 app.disable("x-powered-by");
 app.use(express.json({ limit: "100kb" }));
