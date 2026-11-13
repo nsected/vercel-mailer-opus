@@ -14,6 +14,38 @@
   const modalSuccessEl = document.getElementById("successModal");
   const modalErrorEl   = document.getElementById("errorModal");
 
+  // Log the public API health-check response in the browser console.
+  // The endpoint returns service metadata only; no credentials are exposed.
+  async function logApiStatus() {
+    const endpoint = "/api/send";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "GET",
+        headers: { Accept: "application/json" },
+        cache: "no-store"
+      });
+
+      let data;
+      try {
+        data = await response.clone().json();
+      } catch {
+        data = await response.text();
+      }
+
+      console.info("[API health check]", {
+        endpoint,
+        httpStatus: response.status,
+        ok: response.ok,
+        response: data
+      });
+    } catch (error) {
+      console.error("[API health check] Request failed:", error);
+    }
+  }
+
+  void logApiStatus();
+
   /* ── Idempotency map (persists as long as page is open) ────────── */
   const sentKeys = new Map(); // fingerprint → idempotencyKey
 
