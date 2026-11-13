@@ -215,6 +215,15 @@
         /* ---- Сетевая ошибка ---- */
         lastError = networkErr.message || "Сетевая ошибка";
 
+        // Диагностика без вывода персональных данных формы.
+        console.error("[Form submit] Network request failed", {
+          endpoint: "/api/send",
+          attempt,
+          maxAttempts: MAX_ATTEMPTS,
+          error: networkErr,
+          message: lastError
+        });
+
         if (attempt < MAX_ATTEMPTS) {
           const waitMs = BASE_DELAY_MS * Math.pow(2, attempt - 1);
           setStatus(
@@ -228,11 +237,17 @@
       }
     }
 
-    /* ---- Состояние: Неопределённый результат ---- */
+    /* ---- Состояние: Неизвестная ошибка ---- */
+    console.error("[Form submit] Unknown result after all retry attempts", {
+      endpoint: "/api/send",
+      attempts: MAX_ATTEMPTS,
+      lastError: lastError || "нет соединения"
+    });
+
     setStatus(
       statusEl,
       "unknown",
-      `⚠️ Неопределённый результат: не удалось получить ответ от сервера после ${MAX_ATTEMPTS} попыток. Последняя ошибка: ${escapeHtml(lastError || "нет соединения")}`
+      "⚠️ Неизвестная ошибка. Попробуйте еще раз."
     );
 
     // Удаляем из кэша, чтобы пользователь мог повторить с новым ключом
