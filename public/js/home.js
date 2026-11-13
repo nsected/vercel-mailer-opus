@@ -130,24 +130,13 @@
       sentKeys.set(fingerprint, idempotencyKey);
     }
 
-    // Состояние: Ожидание
+    // Во время всех попыток и пауз показываем один и тот же синий статус.
     if (submitBtn) submitBtn.disabled = true;
-    setStatus(statusEl, "waiting", "⏳ Ожидание…");
+    setStatus(statusEl, "sending", '<span class="mailer-spinner"></span> Отправка…');
 
     let lastError = null;
 
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-      // Состояния: Отправка или Повторная попытка
-      if (attempt === 1) {
-        setStatus(statusEl, "sending", '<span class="mailer-spinner"></span> Отправка…');
-      } else {
-        setStatus(
-          statusEl,
-          "retrying",
-          `<span class="mailer-spinner"></span> Повторная попытка ${attempt} из ${MAX_ATTEMPTS}…`
-        );
-      }
-
       try {
         const response = await fetch("/api/send", {
           method: "POST",
@@ -192,11 +181,8 @@
         if (data.retryable && attempt < MAX_ATTEMPTS) {
           lastError = data.message || `HTTP ${response.status}`;
           const waitMs = BASE_DELAY_MS * Math.pow(2, attempt - 1);
-          setStatus(
-            statusEl,
-            "retrying",
-            `<span class="mailer-spinner"></span> Повторная попытка ${attempt + 1} из ${MAX_ATTEMPTS}: временная ошибка. Ожидание ${waitMs / 1000} сек…`
-          );
+          // Не показываем пользователю информацию о повторной попытке.
+          // Синий статус «Отправка…» остаётся видимым во время паузы.
           await delay(waitMs);
           continue;
         }
@@ -226,11 +212,7 @@
 
         if (attempt < MAX_ATTEMPTS) {
           const waitMs = BASE_DELAY_MS * Math.pow(2, attempt - 1);
-          setStatus(
-            statusEl,
-            "retrying",
-            `<span class="mailer-spinner"></span> Ошибка сети. Повторная попытка ${attempt + 1} из ${MAX_ATTEMPTS} через ${waitMs / 1000} сек…`
-          );
+          // Не меняем статус: пользователь продолжает видеть «Отправка…».
           await delay(waitMs);
           continue;
         }
