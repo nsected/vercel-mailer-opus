@@ -1,0 +1,255 @@
+/* ============================================================
+   Шапка лендинга «ХОРОШО»
+   Все стили ограничены контейнером .landing-content
+   Зависимости: Bootstrap 5 (CSS + bootstrap.bundle.min.js)
+   Мобильное меню — штатный коллапс Bootstrap (data-bs-toggle)
+   ============================================================ */
+
+.lp-header {
+  --lp-bg: #ebe8e1;
+  --lp-text: #545d62;
+  --lp-text-muted: #55616a;
+  --lp-green: #57a53e;
+  --lp-green-dark: #4a8f34;
+  --lp-white: #ffffff;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--lp-text);
+}
+
+/* ---------- Каркас шапки ---------- */
+.lp-header .lp-header {
+  background-color: var(--lp-bg);
+}
+
+.lp-header .lp-navbar {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.lp-header .lp-container {
+  max-width: 1400px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  column-gap: 1rem;
+}
+
+/* ---------- Логотип ---------- */
+.lp-header .lp-brand {
+  padding: 0;
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.lp-header .lp-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  fill: none;
+  stroke: var(--lp-text);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.lp-header .lp-logo .lp-logo-fill {
+  stroke: none;
+}
+
+.lp-header .lp-logo .lp-logo-fill--dark {
+  fill: #4a555e;
+}
+
+.lp-header .lp-logo .lp-logo-fill--gray {
+  fill: #8d9298;
+}
+
+/* ---------- Навигация ---------- */
+/* Показ/скрытие меню выполняет Bootstrap (collapse). Здесь — только раскладка. */
+.lp-header .lp-collapse {
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1.5rem;
+}
+
+.lp-header .lp-nav {
+  flex-direction: row;
+  /*column-gap: 1.75rem;*/
+}
+
+.lp-header .lp-nav-link {
+  color: var(--lp-text);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.5rem 0;
+  white-space: nowrap;
+}
+
+.lp-header .lp-nav-link:hover,
+.lp-header .lp-nav-link:focus {
+  color: var(--lp-green);
+}
+
+/* ---------- Соцсети ---------- */
+.lp-header .lp-socials {
+  display: flex;
+  align-items: center;
+  column-gap: 0.875rem;
+  margin: 0;
+}
+
+.lp-header .lp-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: var(--lp-text-muted);
+}
+
+.lp-header .lp-social svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.lp-header .lp-social--boxed {
+  background-color: var(--lp-text-muted);
+  color: var(--lp-bg);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.lp-header .lp-social--boxed svg {
+  width: 16px;
+  height: 16px;
+}
+
+.lp-header .lp-social:hover,
+.lp-header .lp-social:focus {
+  color: var(--lp-green);
+}
+
+.lp-header .lp-social--boxed:hover,
+.lp-header .lp-social--boxed:focus {
+  background-color: var(--lp-green);
+  color: var(--lp-white);
+}
+
+/* ---------- Телефон ---------- */
+.lp-header .lp-phone {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.625rem;
+  color: var(--lp-text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  white-space: nowrap;
+}
+
+.lp-header .lp-phone:hover,
+.lp-header .lp-phone:focus {
+  color: var(--lp-green);
+}
+
+.lp-header .lp-phone-icon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+/* ---------- Кнопка «Запись на йогу» ---------- */
+.lp-header .lp-cta {
+  background-color: var(--lp-green);
+  color: var(--lp-white);
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  text-align: center;
+  max-width: 170px;
+  padding: 0.75rem 1.5rem;
+  white-space: normal;
+}
+
+.lp-header .lp-cta:hover,
+.lp-header .lp-cta:focus {
+  background-color: var(--lp-green-dark);
+  color: var(--lp-white);
+}
+
+/* ---------- Бургер (кнопка штатного коллапса Bootstrap) ---------- */
+/* Скрытие на десктопе делает Bootstrap (navbar-expand-lg) */
+.lp-header .lp-toggler {
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 5px;
+  width: 44px;
+  height: 40px;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid rgba(63, 75, 84, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.lp-header .lp-toggler-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--lp-text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ---------- Мобильная версия (< lg) ---------- */
+@media (max-width: 991.98px) {
+  .lp-header .lp-toggler {
+    display: flex;
+  }
+
+  /* Раскладка раскрытого меню (показ/скрытие делает Bootstrap collapse) */
+  .lp-header .lp-collapse {
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  /* Анимация бургера в крестик: Bootstrap сам снимает класс .collapsed
+     с кнопки, когда меню открыто */
+  .lp-header .lp-toggler:not(.collapsed) .lp-toggler-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .lp-header .lp-toggler:not(.collapsed) .lp-toggler-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .lp-header .lp-toggler:not(.collapsed) .lp-toggler-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .lp-header .lp-nav {
+    flex-direction: column;
+    row-gap: 0.25rem;
+  }
+
+  .lp-header .lp-logo {
+    height: 36px;
+  }
+
+  .lp-header .lp-cta {
+    max-width: none;
+  }
+}

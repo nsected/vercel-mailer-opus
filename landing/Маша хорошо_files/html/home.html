@@ -1,0 +1,400 @@
+<!-- ======================= ШАПКА ЛЕНДИНГА (вставить в CMS) ======================= -->
+<header class="lp-header">
+    <nav class="navbar navbar-expand-lg lp-navbar" aria-label="Основная навигация">
+        <div class="container-fluid lp-container"><!-- Логотип --><a class="navbar-brand lp-brand" href="#"
+                                                                     aria-label="ХОРОШО &mdash; на главную">
+            <svg class="lp-logo" viewBox="0 0 268 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"
+                 focusable="false">
+
+                <line x1="6" y1="8" x2="30" y2="48"></line>
+                <line x1="30" y1="8" x2="6" y2="48"></line>
+
+                <ellipse cx="60" cy="28" rx="17" ry="20" transform="rotate(-8 60 28)"></ellipse>
+
+                <line x1="95" y1="8" x2="95" y2="48"></line>
+                <ellipse class="lp-logo-fill lp-logo-fill--dark" cx="110" cy="19" rx="13" ry="11"
+                         transform="rotate(-10 110 19)"></ellipse>
+
+                <ellipse class="lp-logo-fill lp-logo-fill--dark" cx="152" cy="28" rx="17" ry="20"
+                         transform="rotate(7 152 28)"></ellipse>
+
+                <line x1="184" y1="8" x2="184" y2="48"></line>
+                <line x1="200" y1="8" x2="200" y2="48"></line>
+                <line x1="216" y1="8" x2="216" y2="48"></line>
+                <line x1="184" y1="48" x2="216" y2="48"></line>
+
+                <ellipse class="lp-logo-fill lp-logo-fill--gray" cx="246" cy="30" rx="16" ry="18"
+                         transform="rotate(-12 246 30)"></ellipse>
+            </svg>
+        </a><!-- Переключатель мобильного меню (штатный коллапс Bootstrap) -->
+            <button class="navbar-toggler lp-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#lpHeaderNav" aria-controls="lpHeaderNav" aria-expanded="false"
+                    aria-label="Открыть меню"><span class="lp-toggler-bar"></span> <span class="lp-toggler-bar"></span>
+                <span class="lp-toggler-bar"></span></button> <!-- Меню -->
+            <div class="collapse navbar-collapse lp-collapse" id="lpHeaderNav">
+                <ul class="navbar-nav lp-nav">
+                    <li class="nav-item"><a class="nav-link lp-nav-link" href="#about">Обо мне</a></li>
+                    <li class="nav-item"><a class="nav-link lp-nav-link" href="#movement">Движение</a></li>
+                    <li class="nav-item"><a class="nav-link lp-nav-link" href="#breath">Дыхание</a></li>
+                    <li class="nav-item"><a class="nav-link lp-nav-link" href="#reviews">Отзывы</a></li>
+                </ul>
+                <!-- Соцсети -->
+                <ul class="lp-socials list-unstyled" aria-label="Социальные сети">
+                    <li><a class="lp-social" href="https://t.me/" target="_blank" rel="noopener noreferrer"
+                           aria-label="Telegram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             focusable="false">
+                            <path d="M21.6 3.3 2.9 10.5c-.9.35-.88 1.63.03 1.95l4.6 1.6 1.77 5.5c.27.83 1.32 1 1.85.32l2.4-3.06 4.72 3.47c.66.48 1.6.12 1.77-.68L22.9 4.5c.2-.93-.72-1.7-1.3-1.2Z"></path>
+                        </svg>
+                    </a></li>
+                    <li><a class="lp-social lp-social--boxed" href="https://vk.com/" target="_blank"
+                           rel="noopener noreferrer" aria-label="ВКонтакте">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             focusable="false">
+                            <path d="M13.16 17.5c-5.3 0-8.32-3.63-8.45-9.67h2.66c.09 4.43 2.04 6.31 3.59 6.7V7.83h2.5v3.82c1.53-.16 3.13-1.9 3.67-3.82h2.5a7.38 7.38 0 0 1-3.4 4.83 7.65 7.65 0 0 1 3.98 4.84h-2.75a4.78 4.78 0 0 0-3.99-3.46v3.46h-.31Z"></path>
+                        </svg>
+                    </a></li>
+                    <li><a class="lp-social lp-social--boxed" href="https://youtube.com/" target="_blank"
+                           rel="noopener noreferrer" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                             focusable="false">
+                            <path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.28 5 12 5 12 5s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26.2 26.2 0 0 0 2 12c0 1.62.13 3.23.4 4.8a2.5 2.5 0 0 0 1.76 1.77C5.72 19 12 19 12 19s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77c.27-1.57.4-3.18.4-4.8s-.13-3.23-.4-4.8ZM10 15V9l5.2 3L10 15Z"></path>
+                        </svg>
+                    </a></li>
+                </ul>
+                <!-- Телефон --><a class="lp-phone" href="tel:+79194910248">
+                <svg class="lp-phone-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                     focusable="false">
+                    <path d="M6.6 3.2c.6-.6 1.6-.5 2.1.2l1.9 2.6c.4.6.4 1.4-.1 1.9l-1.1 1.2c1 1.9 2.5 3.4 4.4 4.4l1.2-1.1c.5-.5 1.3-.5 1.9-.1l2.6 1.9c.7.5.8 1.5.2 2.1l-1.3 1.3c-.6.6-1.5.9-2.3.7-3.1-.8-5.9-2.4-8.1-4.6a16.6 16.6 0 0 1-4.6-8.1c-.2-.8.1-1.7.7-2.3l1.3-1.3.2-.8Z"
+                          transform="rotate(8 12 12)"></path>
+                </svg>
+                <span class="lp-phone-number">+79194910248</span></a><!-- Кнопка записи --> <a class="btn lp-cta"
+                                                                                               href="#signup"
+                                                                                               role="button">Запись на&nbsp;йогу</a>
+            </div>
+        </div>
+    </nav>
+</header><!-- ======================= /ШАПКА ЛЕНДИНГА ======================= -->
+<p>&nbsp;</p>
+<!-- ============ СЕКЦИЯ "ОБО МНЕ" ============ -->
+<section class="landing-section" id="about">
+    <div class="container">
+        <div class="row justify-content-center g-4 g-lg-5">
+            <div class="col-11 col-md-5 col-lg-4">
+                <video width="300" height="150" class="w-100 landing-video" controls="controls" preload="none"
+                       poster="/images/poster-about.png">
+                    <source src="/videos/about.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+            <div class="col-11 col-md-7 col-lg-5 text-center">
+                <h2 class="landing-heading mb-3">ОБО МНЕ</h2>
+                <p class="landing-text">Хочу и могу быть полезной для тебя, если ты, как и я, хочешь и готов к
+                    положительным переменам в своей жизни. Я знаю как заняться физкультурой, даже если ты никогда прежде
+                    не тренировался.</p>
+                <p class="landing-text">Я пришла в оздоровительную физкультуру из профессии менеджера культуры.
+                    Организация выставки картин, например, очень схожа по своей методике с организацией новых полезных
+                    привычек. Поэтому мой подход к формированию привычки - культурный, поступательный и методичный.
+                    Вместе пойдем шаг за шагом - от знаний к навыкам. Можем освоить оригинальную северную ходьбу.
+                    Определим цель, место и время (период) проведения <s>выставки</s> твоих тренировок. Составим план,
+                    подберем инвентарь, подходящую экипировку. Откроем в себе любовь к тренировкам на свежем воздухе,
+                    проведём 3-5 персональных тренировок лично или на расстоянии. Вследствие чего ты обретёшь новый
+                    навык. И жизнь больше не будет прежней.</p>
+                <p class="landing-text">В прежней жизни ты испытывал проблемы со сном, стрессовал по каждому пустяку,
+                    часто болел респираторными болячками и испытывал боли в спине и шее? Благодаря моим методикам ты
+                    сможешь нормально спать, регулировать свой рабочий настрой, активизировать мозг, когда надо и
+                    успокаивать сознание, когда нахлынуло волнение. Все это - с помощью простых инструментов, которые
+                    всегда у тебя под носом.</p>
+                <p class="landing-text">Я знаю о дыхании практически всё! Практикую дыхательную гимнастику с 2009 года.
+                    Собрала лучшие рабочие инструменты. Готова делиться и отдавать. Мои методические наработки подходят
+                    для индивидуального и корпоративного использования.</p>
+                <p class="landing-text mb-0">Именно корпоративные продукты интересуют меня особенно. Сейчас моя работа
+                    посвящена разработке комплексных мер по внедрению производственной гимнастики нового формата на
+                    предприятиях моей страны. Моя цель сделать движение оздоровления обязательной частью повседневности
+                    каждого человека. Будь то утренняя зарядка, суставная и дыхательная гимнастика на рабочем месте или
+                    прогулка с палками в парке, недалеко от дома. Ведь здоровый мир начинается с личного здоровья и
+                    благополучия каждого из нас.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============ СЕКЦИЯ "ДАВАЙ НАЧНЕМ" ============ -->
+<section class="landing-section" id="start">
+    <div class="container">
+        <div class="row justify-content-center align-items-center g-4 g-lg-5">
+            <div class="col-11 col-lg-6 text-center"><img src="/images/circles.png" alt="Движение, дыхание, ходьба"
+                                                          class="img-fluid landing-circles"></div>
+            <div class="col-11 col-lg-5">
+                <h2 class="landing-heading mb-4">ДАВАЙ НАЧНЕМ</h2>
+                <div class="start-item d-flex align-items-start"><span class="start-icon" aria-hidden="true">Q</span>
+                    <div>
+                        <h3 class="start-item-title">ДВИГАТЬСЯ</h3>
+                        <p class="landing-text mb-0">Положительные перемены наступят уже сегодня, если начнёшь внедрять
+                            в свою жизнь движение. Правильно потянуться с утра, сделать простую зарядку для суставов, в
+                            течение рабочего дня - физкультурная пауза - вместо чашки кофе. Тебе это откликается? Тогда
+                            нам по пути.</p>
+                    </div>
+                </div>
+                <div class="start-item d-flex align-items-start"><span class="start-icon" aria-hidden="true">Q</span>
+                    <div>
+                        <h3 class="start-item-title">ДЫШАТЬ</h3>
+                        <p class="landing-text mb-0">Я, как никто другой, знаю, насколько важным может быть навык
+                            осознанного дыхания. В моей жизни был момент на грани жизни и смерти, а спасительным стал -
+                            выдох. Теперь я знаю всё о том, как помочь себе в стрессе, снять заложенность при насморке и
+                            улучшить сон с помощью того, что находиться прямо у тебя под носом - с помощью дыхания.</p>
+                    </div>
+                </div>
+                <div class="start-item d-flex align-items-start"><span class="start-icon" aria-hidden="true">Q</span>
+                    <div>
+                        <h3 class="start-item-title">ХОДИТЬ</h3>
+                        <p class="landing-text mb-0">Самым физиологичным циклическим упражнением для человека является
+                            ходьба. А прогулки на свежем воздухе &ndash; самый правильный подход к началу регулярных
+                            тренировок. Начни ходить со мной, и ты поймёшь что даже в простой ходьбе есть горизонт для
+                            роста и развития.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============ СЕКЦИЯ "ДВИГАТЬСЯ" ============ -->
+<section class="landing-section" id="move">
+    <div class="container">
+        <h2 class="landing-heading landing-heading--spaced text-center mb-5">ДВИГАТЬСЯ</h2>
+        <div class="row justify-content-center g-4 g-lg-5">
+            <div class="col-11 col-md-5 col-lg-4">
+                <h3 class="landing-subheading mb-4">ЙОГА В ДЕМИДКОВО</h3>
+                <p class="landing-text">Заниматься в месте, которое входит в ТОП-100 санаториев России - счастье для
+                    Вас, недаром слоган Демидково "Счастье здесь"<br>Совсем недалеко от Перми расположился известный
+                    санаторий &laquo;Демидково&raquo;, который по праву называют жемчужиной Пермского края: реликтовый
+                    сосновый бор, великая река Кама, ухоженная красивая территория, современные залы для занятий,
+                    SPA-зона - все это для вас после/до нашего занятия йогой.</p>
+                <p class="landing-text">Йога со мной в вечернее время - лучший помощник для нормализации Вашего сна,
+                    тотального расслабления, поддержания гормонального баланса.</p>
+                <p class="landing-text">Занятия 2 раза в неделю помогают чувствовать себя оптимально отдохнувшими на
+                    протяжении всей недели.</p>
+                <a href="#contacts" class="btn btn-landing mb-3">ЗАПИСАТЬСЯ НА ЗАНЯТИЕ</a>
+                <p class="landing-price mb-0">800/<s>2000р</s><br><strong>1 занятие 60 минут</strong></p>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4"><img src="/images/yoga.png" alt="Йога в Демидково"
+                                                       class="img-fluid w-100"></div>
+        </div>
+    </div>
+</section>
+<!-- ============ СЕКЦИЯ "ХОДИТЬ" ============ -->
+<section class="landing-section" id="walk">
+    <div class="container">
+        <h2 class="landing-heading landing-heading--spaced text-center mb-5">ХОДИТЬ</h2>
+        <div class="row justify-content-center g-4 g-lg-5 walk-row">
+            <div class="col-11 col-md-5 col-lg-4">
+                <h3 class="landing-subheading mb-1">СМОТРЕТЬ 1 УРОК</h3>
+                <p class="landing-muted mb-3">урок бесплатный</p>
+                <p class="landing-text">Здесь часть видео о показаниях и противопоказаниях к занятиям оригинальной
+                    северной ходьбой из моего авторского курса "ХОДИТЬ ХОРОШО"</p>
+                <p class="landing-text">Смотри первое полное видео из курса на моем канале в YouTube, оставляй свой
+                    комментарий и получай доступ ко всем урокам со скидкой 30% уже СЕГОДНЯ</p>
+                <div class="d-flex flex-column align-items-start gap-2 mb-3"><a href="#contacts"
+                                                                                class="btn btn-landing">ПОЛУЧИТЬ ДОСТУП
+                    К ВИДЕО</a> <a href="#contacts" class="btn btn-landing">ОСТАВИТЬ ЗАЯВКУ НА КУРС</a></div>
+                <p class="landing-price mb-0"><strong>2100₽/<s>3000р</s><br>ДОСТУП БЕССРОЧНЫЙ</strong></p>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4">
+                <video width="300" height="150" class="w-100 landing-video" controls="controls" preload="none"
+                       poster="/images/poster-lesson.png">
+                    <source src="/videos/lesson.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+        </div>
+        <div class="row justify-content-center g-4 g-lg-5 walk-row">
+            <div class="col-11 col-md-5 col-lg-4">
+                <h3 class="landing-subheading mb-4">АВТОРСКИЙ КУРС<br>"ХОДИТЬ ХОРОШО"</h3>
+                <p class="landing-text">В этом курсе 6 уроков, включающих в себя 3 теоретических и 3 практических урока,
+                    просматривая которые в любое удобное для вас время, вы качественно измените свою жизнь и приумножите
+                    свое здоровье</p>
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2"><a href="#contacts"
+                                                                                                  class="btn btn-landing">КУПИТЬ
+                    КУРС</a>
+                    <p class="landing-price landing-price--small text-end mb-0"><strong>2100₽/<s>3000р</s><br>ДОСТУП
+                        БЕССРОЧНЫЙ</strong></p>
+                </div>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4"><img src="/images/course.png" alt="Северная ходьба с палками"
+                                                       class="img-fluid w-100"></div>
+        </div>
+        <div class="row justify-content-center g-4 g-lg-5 walk-row">
+            <div class="col-11 col-md-5 col-lg-4">
+                <h3 class="landing-subheading mb-4">ПЕРСОНАЛЬНЫЕ<br>ТРЕНИРОВКИ</h3>
+                <p class="landing-text">Все мое внимание только на Вас</p>
+                <p class="landing-text">1,5 часа персональной тренировки со мной эффективнее групповой на 100 процентов
+                    - и это ХОРОШО</p>
+                <p class="landing-text">Нажимая кнопку "Записаться" вы делаете вклад в свое здоровье и молодость. Нам
+                    остается только согласовать место и время нашей встречи - я с Вами свяжусь</p>
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2"><a href="#contacts"
+                                                                                                  class="btn btn-landing">ЗАПИСАТЬСЯ</a>
+                    <p class="landing-price mb-0"><strong>2500 ₽/1 ЗАНЯТИЕ</strong></p>
+                </div>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4"><img src="/images/trainer.png" alt="Тренер Мария Шандренко"
+                                                       class="img-fluid w-100"></div>
+        </div>
+        <div class="row justify-content-center g-4 g-lg-5 walk-row mb-0">
+            <div class="col-11 col-md-5 col-lg-4">
+                <h3 class="landing-subheading mb-4">ПАЛКИ ТВОЕЙ МЕЧТЫ</h3>
+                <p class="landing-text">Палки в скандинавской ходьбе - это не только тренажер, но и стиль, безопасность,
+                    продолжение тебя и завершение твоего спортивного образа.</p>
+                <p class="landing-text">Я - профессионал своего дела, который испробовал на себе огромное количество
+                    инвентаря - от самых бюджетных до палок премиум класса.</p>
+                <p class="landing-text">С уверенностью скажу, что подберу для тебя ТВОЮ ИДЕАЛЬНУЮ ПАРУ</p>
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2"><a href="#contacts"
+                                                                                                  class="btn btn-landing">ПОДОБРАТЬ</a>
+                    <p class="landing-price mb-0"><strong>от 1500₽/1 пара</strong></p>
+                </div>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4"><img src="/images/poles.png" alt="Палки для скандинавской ходьбы"
+                                                       class="img-fluid w-100"></div>
+        </div>
+    </div>
+</section>
+<!-- ============ СЕКЦИЯ "ДЫШАТЬ" ============ -->
+<section class="landing-section" id="breathe">
+    <div class="container">
+        <h2 class="landing-heading landing-heading--spaced text-center mb-1">ДЫШАТЬ</h2>
+        <p class="landing-subheading landing-subheading--small text-center mb-5">КОРПОРАТИВНЫМ КЛИЕНТАМ</p>
+        <div class="row justify-content-center align-items-center g-4 g-lg-5">
+            <div class="col-11 col-md-6 col-lg-5">
+                <video width="300" height="150" class="w-100 landing-video" controls="controls" preload="none"
+                       poster="/images/poster-group.png">
+                    <source src="/videos/corporate.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4 text-center"><a href="#contacts"
+                                                                 class="btn btn-landing btn-landing--wide">ПОЛУЧИТЬ
+                ИНДИВИДУАЛЬНОЕ<br>ПРЕДЛОЖЕНИЕ</a></div>
+        </div>
+    </div>
+</section>
+<!-- ============ СЕКЦИЯ "ОТЗЫВЫ" ============ -->
+<section class="landing-section" id="reviews">
+    <div class="container">
+        <h2 class="landing-heading text-center mb-4">ОТЗЫВЫ</h2>
+        <div class="row justify-content-center mb-5">
+            <div class="col-11 col-lg-8 text-center">
+                <p class="landing-text mb-0">Отзывы более 5000 довольных клиентов за все годы моей работы не уместятся
+                    ни на одном сайте, не смотря на это, ниже вы можете ознакомиться с малой частью свежих отзывов о
+                    моей работе на благо Вашего здоровья</p>
+            </div>
+        </div>
+        <div class="row justify-content-center g-5">
+            <div class="col-11 col-md-5 col-lg-4">
+                <div class="review">
+                    <p class="landing-text">Мы познакомились с Машей на тренинге &laquo;Счастливая неделя&raquo; в
+                        санатории &laquo;Демидково&raquo;.<br>Хотела начать тренироваться. Но проблема такая - просто
+                        ходить скучно, бегать тяжело, а северная ходьба это интересно, динамично, при этом щадит
+                        суставы. За три тренировки освоили с инструктором технику ходьбы с палками.<br>Правильная
+                        техника движения, которой учит Маша, позволяет включить в работу все нужные группу мышц. Как
+                        итог - развенчание стереотипа, что это спорт &laquo;для пожилых&raquo;.<br>Я продолжаю ходить с
+                        палками с огромным удовольствием!</p>
+                    <div class="d-flex align-items-start gap-3 mt-4"><img src="/images/avatar1.png"
+                                                                          alt="Фото Анны Зорковой"
+                                                                          class="review-avatar">
+                        <div class="review-author">
+                            <p class="mb-0"><strong>Анна Зоркова</strong></p>
+                            <p class="mb-0"><a href="https://vk.com/ann_zorkova" class="review-link"><strong>https://vk.com/ann_zorkova</strong></a>
+                            </p>
+                            <p class="mb-0">бизнес-консультант<br>г.Екатеринбург</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4">
+                <div class="review">
+                    <p class="landing-text">Впервые Марию я увидела во главе группы северных ходоков в санатории. С
+                        первого взгляда зацепила ее энергетика и легкость!<br>Благодарна тренеру за индивидуальные
+                        тренировки, из которых вынесла много полезной информации касающейся правильной техники ходьбы (
+                        наклон тела, положение рук, чтобы не тянулся след от наконечника палки), правильного дыхания и
+                        выбора экипировки.<br>Северная ходьба прекрасно помогает мне справиться с стрессом! Всем своим
+                        знакомым рекомендую!</p>
+                    <div class="d-flex align-items-start gap-3 mt-4"><img src="/images/avatar2.png"
+                                                                          alt="Фото Екатерины Коротаевой"
+                                                                          class="review-avatar">
+                        <div class="review-author">
+                            <p class="mb-0"><strong>Екатерина Коротаева</strong></p>
+                            <p class="mb-0"><a href="https://vk.com/id38948342" class="review-link"><strong>https://vk.com/id38948342</strong></a>
+                            </p>
+                            <p class="mb-0">предприниматель<br>г. Пермь</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center g-5 review-offset">
+            <div class="col-11 col-md-5 col-lg-4">
+                <div class="review">
+                    <p class="landing-text">Меня зовут Кристина и я та, которая всегда была на спорте, бывший
+                        фитнес-тренер с десятилетним стажем, сидящая в глубоком декрете с 4 детьми, мечтала вернуться в
+                        фитнес, грезила им, но никак не могла найти то, что ей действительно будет интересно и главное
+                        безопасно для ее спины, которая оказалась не готова с серьезным испытаниям в виде вынашивания
+                        тройни.<br>И так - Мария...путь знакомства с ней лежал через Дубай, так как именно девушка от
+                        туда мне посоветовала Машу, причем разговор у нас был вообще не про спорт, но кривая как-то сама
+                        вывела на Полазну, Демидково и Машу. И я нашла то, о чем мечтала долгие годы, для меня было
+                        открытием, честно, что скандинавская ходьба может тааак затягивать и быть такой интересной<br>скандинавская
+                        ходьба для меня всегда теперь связана с Марией - тренером об Бога, влюбленным в свое дело,
+                        причем как-то все ненавязчиво, легко и очень доходчиво, а польза этой физической активности
+                        нереальная.<br>спасибо, Маш, за то, что есть ТЫ и твои LEKI</p>
+                    <div class="d-flex align-items-start gap-3 mt-4"><img src="/images/avatar3.png"
+                                                                          alt="Фото Кристины Шестаковой"
+                                                                          class="review-avatar">
+                        <div class="review-author">
+                            <p class="mb-0"><strong>Кристина Шестакова</strong></p>
+                            <p class="mb-0"><a href="https://vk.com/kristina_4syna" class="review-link"><strong>https://vk.com/kristina_4syna</strong></a>
+                            </p>
+                            <p class="mb-0">нутрициолог, г.Пермь</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-11 col-md-5 col-lg-4 d-none d-md-block" aria-hidden="true"></div>
+        </div>
+    </div>
+</section>
+<!-- ============ СЕКЦИЯ КОНТАКТОВ ============ -->
+<section class="landing-section landing-section--contacts" id="contacts">
+    <div class="container">
+        <div class="row justify-content-center g-4 g-lg-5">
+            <div class="col-11 col-md-6 col-lg-5">
+                <h2 class="landing-heading landing-heading--contacts mb-4">ШАНДРЕНКО<br>МАРИЯ АНАТОЛЬЕВНА</h2>
+                <p class="landing-heading landing-heading--contacts mb-0">ИНН 591455031333</p>
+            </div>
+            <div class="col-11 col-md-6 col-lg-5">
+                <div class="d-flex align-items-start gap-3 contact-item"><span class="contact-icon"
+                                                                               aria-hidden="true"><i
+                        class="bi bi-building"></i></span>
+                    <div>
+                        <p class="contact-label mb-1">Адрес</p>
+                        <p class="contact-value mb-0">Российская Федерация, Пермский край, Добрянский район, пгт.
+                            Полазна, ул.Альпийская, 15</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-start gap-3 contact-item"><span class="contact-icon"
+                                                                               aria-hidden="true"><i
+                        class="bi bi-telephone"></i></span>
+                    <div>
+                        <p class="contact-label mb-1">Телефон</p>
+                        <p class="contact-value mb-0">+7 919 491 0248</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-start gap-3 contact-item mb-0"><span class="contact-icon"
+                                                                                    aria-hidden="true"><i
+                        class="bi bi-feather"></i></span>
+                    <div>
+                        <p class="contact-label mb-1">Email для корпоративных клиентов</p>
+                        <p class="contact-value mb-0"><a href="mailto:mashasha.ko@gmail.com" class="contact-link">mashasha.ko@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

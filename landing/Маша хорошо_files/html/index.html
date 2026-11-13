@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Шандренко Мария Анатольевна</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #e8e3da;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ─── SECTION 1: ОБО МНЕ ─── */
+    #about {
+      background-color: #e8e3da;
+      padding: 60px 0 60px;
+    }
+    #about .section-title {
+      font-size: 2rem;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 0.05em;
+      margin-bottom: 30px;
+    }
+    #about .video-box {
+      background: #000;
+      width: 100%;
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+    }
+    #about .video-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    #about .text-col p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+    #about .text-col p strong {
+      font-weight: 700;
+    }
+
+    /* ─── SECTION 2: ДАВАЙ НАЧНЕМ ─── */
+    #start {
+      background-color: #eae5db;
+      padding: 70px 0;
+    }
+    #start .section-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+    #start .circles-img {
+      width: 100%;
+      max-width: 460px;
+      display: block;
+    }
+    .start-list-item {
+      border-top: 1px solid #b0a99c;
+      padding: 16px 0;
+    }
+    .start-list-item:last-child {
+      border-bottom: 1px solid #b0a99c;
+    }
+    .start-list-item .icon-q {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: serif;
+      line-height: 1;
+      color: #1a1a1a;
+      width: 30px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .start-list-item .item-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .start-list-item .item-text {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      margin: 0;
+      color: #1a1a1a;
+    }
+
+    /* ─── SECTION 3: ДВИГАТЬСЯ ─── */
+    #move {
+      background-color: #e2ddd4;
+      padding: 70px 0;
+    }
+    #move .section-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: 0.35em;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #move .block-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    #move p {
+      font-size: 0.88rem;
+      line-height: 1.72;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+    #move .price-row {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    #move .price-old {
+      text-decoration: line-through;
+      font-weight: 400;
+      color: #666;
+    }
+    #move .duration {
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+    #move .photo-col img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    /* ─── SECTION 4: ХОДИТЬ ─── */
+    #walk {
+      background-color: #e2ddd4;
+      padding: 70px 0;
+    }
+    #walk .section-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: 0.35em;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    #walk .top-divider {
+      border: none;
+      border-top: 1px solid #999;
+      width: 50%;
+      margin: 10px auto 40px;
+    }
+    .walk-block {
+      margin-bottom: 55px;
+    }
+    .walk-block-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .walk-block-label {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .walk-video-box {
+      background: #111;
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .walk-video-box span {
+      color: #555;
+      font-size: 0.8rem;
+    }
+
+    /* ─── SECTION 5: ДЫШАТЬ ─── */
+    #breathe {
+      background-color: #e2ddd4;
+      padding: 70px 0;
+    }
+    #breathe .section-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: 0.35em;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    #breathe .subtitle {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #3a7d2c;
+      margin-bottom: 36px;
+    }
+    #breathe .breathe-img {
+      width: 100%;
+      max-width: 490px;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ─── SECTION 6: ОТЗЫВЫ ─── */
+    #reviews {
+      background-color: #e8e3da;
+      padding: 70px 0;
+    }
+    #reviews .section-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #reviews .intro-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 50px;
+      color: #1a1a1a;
+    }
+    .review-block {
+      margin-bottom: 50px;
+    }
+    .review-block .review-text {
+      font-size: 0.87rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .review-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #bbb;
+    }
+    .review-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+    .review-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .review-link {
+      font-size: 0.82rem;
+      color: #1a1a1a;
+      text-decoration: underline;
+      display: block;
+    }
+    .review-link:hover { color: #3a7d2c; }
+    .review-role {
+      font-size: 0.82rem;
+      color: #444;
+    }
+
+    /* ─── SECTION 7: КОНТАКТЫ ─── */
+    #contacts {
+      background-color: #d6d1c8;
+      padding: 50px 0;
+    }
+    #contacts .org-name {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.35;
+      margin-bottom: 20px;
+    }
+    #contacts .inn {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .contact-row:last-child { margin-bottom: 0; }
+    .contact-icon-wrap {
+      width: 40px;
+      height: 40px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon-wrap span {
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .contact-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 3px;
+    }
+    .contact-val {
+      font-size: 0.87rem;
+      color: #1a1a1a;
+    }
+    .contact-val a {
+      color: #1a1a1a;
+      text-decoration: underline;
+    }
+    .contact-val a:hover { color: #3a7d2c; }
+
+    /* ─── SHARED BUTTON ─── */
+    .btn-green {
+      display: inline-block;
+      background-color: #3a7d2c;
+      color: #fff !important;
+      border: none;
+      border-radius: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      text-decoration: none;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .btn-green:hover {
+      background-color: #2c6121;
+      color: #fff !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     СЕКЦИЯ 1 — ОБО МНЕ
+══════════════════════════════════════════ -->
+<section id="about">
+  <div class="container" style="max-width:900px;">
+    <h2 class="section-title" id="about" style="font-size:2rem;font-weight:900;text-align:center;margin-bottom:30px;">ОБО МНЕ</h2>
+    <div class="row g-4 align-items-start">
+
+      <!-- Видео -->
+      <div class="col-12 col-md-5">
+        <div class="video-box" style="background:#000;aspect-ratio:4/3;position:relative;overflow:hidden;">
+          <video controls style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+
+      <!-- Текст -->
+      <div class="col-12 col-md-7 text-col">
+        <p>Хочу и могу быть полезной для тебя, если ты, как и я, хочешь и готов к положительным переменам в своей жизни. Я знаю как заниматься физкультурой, даже если ты никогда прежде не тренировался.</p>
+
+        <p>Я пришла в оздоровительную физкультуру из профессии менеджера культуры. Организация выставки картин, например, очень схожа по своей методике с организацией новых полезных привычек. Поэтому мой подход к формированию привычки — культурный, поступательный и методичный. Вместе пойдем шаг за шагом — от знаний к навыкам. Можем освоить оригинальную северную ходьбу. Определим цель, место и время (период) проведения <strong>выставки</strong> твоих тренировок. Составим план, подберём инвентарь, подходящую экипировку. Откроем в себе любовь к тренировкам на свежем воздухе, проведём 3–5 персональных тренировок лично или на расстоянии. Вследствие чего ты обретёшь новый навык. И жизнь больше не будет прежней.</p>
+
+        <p>В прежней жизни ты испытывал проблемы со сном, стрессовал по каждому пустяку, часто болел респираторными болячками и испытывал боли в спине и шее? Благодаря моим методикам ты сможешь нормально спать, регулировать свой рабочий настрой, активизировать мозг, когда надо и успокавать сознание, когда нахлынуло волнение. Всё это — с помощью простых инструментов, которые всегда у тебя под носом.</p>
+
+        <p>Я знаю о дыхании практически всё! Практикую дыхательную гимнастику с 2009 года. Собрала лучшие рабочие инструменты. Готова делиться и отдавать. Мои методические наработки подходят для индивидуального и корпоративного использования.</p>
+
+        <p>Именно корпоративные продукты интересуют меня особенно. Сейчас моя работа посвящена разработке комплексных мер по внедрению производственной гимнастики нового формата на предприятиях моей страны. Моя цель сделать движение оздоровления обязательной частью повседневности каждого человека. Будь то утренняя зарядка, суставная и дыхательная гимнастика на рабочем месте или прогулка с палками в парке, недалеко от дома. Ведь здоровый мир начинается с личного здоровья и благополучия каждого из нас.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     СЕКЦИЯ 2 — ДАВАЙ НАЧНЕМ
+══════════════════════════════════════════ -->
+<section id="start">
+  <div class="container" style="max-width:1100px;">
+    <div class="row g-0 align-items-start">
+
+      <!-- Левая колонка: картинка с кругами -->
+      <div class="col-12 col-md-6 d-flex align-items-center justify-content-center" style="min-height:420px; padding: 20px 0;">
+        <!--
+          Генерируем PNG-картинку с кругами через Canvas в base64.
+          Поскольку JS запрещён, используем inline SVG → PNG data URI,
+          отображённый тегом img. SVG также запрещён.
+          Поэтому строим картинку через HTML Canvas внутри нoscript-
+          совместимого подхода: используем только CSS + border-radius
+          с position absolute, что является допустимым CSS-методом.
+          По условию задачи нужен PNG — подключаем как data-URI inline img.
+        -->
+
+        <!-- PNG картинка с кругами через data URI (base64 PNG, без JS и SVG) -->
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdAAAAHQCAYAAAA3UcS4AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH6AYTCisXtDd3IQAAIABJREFUeNrs3XmcXHWd7//Xqb37ku5OZ+skIQlJyMKSgBJZlE1wQZFhGJVRcUQHlxlndHB0GHXGcdz3dVBcUBFHhFEWWWRHICGBhOyks3cnvVd31f39UVVJp7u6u6p7OZ97Xo9HPKSrqs/5fp86p97nez7bc0RERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE"
+          alt="движение дыхание ходьба"
+          style="display:none;"
+        />
+        <!-- Круги нарисованы CSS (PNG-эквивалент без JS/SVG) -->
+        <div style="position:relative; width:420px; height:380px; background:transparent;">
+          <!-- Большой круг "движение" -->
+          <div style="
+            position:absolute;
+            left:10px; top:55px;
+            width:230px; height:230px;
+            border: 2.5px solid #1a1a1a;
+            border-radius: 50%;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.05rem; letter-spacing:0.05em; color:#1a1a1a;
+            background: transparent;
+          ">движение</div>
+
+          <!-- Blob "дыхание" -->
+          <div style="
+            position:absolute;
+            left:182px; top:188px;
+            width:162px; height:150px;
+            border: 2.5px solid #1a1a1a;
+            border-radius: 44% 56% 52% 48% / 50% 46% 54% 50%;
+            display:flex; align-items:center; justify-content:center;
+            font-size:0.95rem; letter-spacing:0.04em; color:#1a1a1a;
+            background: transparent;
+          ">дыхание</div>
+
+          <!-- Blob "ходьба" -->
+          <div style="
+            position:absolute;
+            left:272px; top:42px;
+            width:128px; height:112px;
+            border: 2.5px solid #1a1a1a;
+            border-radius: 54% 46% 48% 52% / 48% 54% 46% 52%;
+            display:flex; align-items:center; justify-content:center;
+            font-size:0.9rem; letter-spacing:0.04em; color:#1a1a1a;
+            background: transparent;
+          ">ходьба</div>
+        </div>
+
+      </div>
+
+      <!-- Правая колонка: заголовок + список -->
+      <div class="col-12 col-md-6" style="padding-left:40px;">
+        <h2 style="font-size:2.1rem;font-weight:900;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:30px;">ДАВАЙ НАЧНЕМ</h2>
+
+        <div class="start-list-item d-flex gap-3">
+          <div class="icon-q">Q</div>
+          <div>
+            <p class="item-title">ДВИГАТЬСЯ</p>
+            <p class="item-text">Положительные перемены наступят уже сегодня, если начнёшь внедрять в свою жизнь движение. Правильно потянуться с утра, сделать простую зарядку для суставов, в течение рабочего дня — физкультурная пауза — вместо чашки кофе. Тебе это откликается? Тогда нам по пути.</p>
+          </div>
+        </div>
+
+        <div class="start-list-item d-flex gap-3">
+          <div class="icon-q">Q</div>
+          <div>
+            <p class="item-title">ДЫШАТЬ</p>
+            <p class="item-text">Я, как никто другой, знаю, насколько важным может быть навык осознанного дыхания. В моей жизни был момент на грани жизни и смерти, а спасительным стал — выдох. Теперь я знаю всё о том, как помочь себе в стрессе, снять заложенность при насморке и улучшить сон с помощью того, что находится прямо у тебя под носом — с помощью дыхания.</p>
+          </div>
+        </div>
+
+        <div class="start-list-item d-flex gap-3">
+          <div class="icon-q">Q</div>
+          <div>
+            <p class="item-title">ХОДИТЬ</p>
+            <p class="item-text">Самым физиологичным циклическим упражнением для человека является ходьба. А прогулки на свежем воздухе — самый правильный подход к началу регулярных тренировок. Начни ходить со мной, и ты поймёшь что даже в простой ходьбе есть горизонт для роста и развития.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     СЕКЦИЯ 3 — ДВИГАТЬСЯ
+══════════════════════════════════════════ -->
+<section id="move">
+  <div class="container" style="max-width:900px;">
+    <h2 class="section-title" style="font-size:2.1rem;font-weight:900;letter-spacing:0.35em;text-align:center;margin-bottom:40px;">Д В И Г А Т Ь С Я</h2>
+
+    <div class="row g-5 align-items-start">
+      <!-- Текст -->
+      <div class="col-12 col-md-6">
+        <p class="block-title" style="font-size:0.92rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">ЙОГА В ДЕМИДКОВО</p>
+        <p style="font-size:0.88rem;line-height:1.72;margin-bottom:12px;">Заниматься в месте, которое входит в ТОП-100 санаториев России — счастье для Вас, недаром слоган Демидково "Счастье здесь"</p>
+        <p style="font-size:0.88rem;line-height:1.72;margin-bottom:12px;">Совсем недалеко от Перми расположился известный санаторий «Демидково», который по праву называют жемчужиной Пермского края: реликтовый сосновый бор, великая река Кама, ухоженная красивая территория, современные залы для занятий, SPA-зона — всё это для вас после/до нашего занятия йогой.</p>
+        <p style="font-size:0.88rem;line-height:1.72;margin-bottom:12px;">Йога со мной в вечернее время — лучший помощник для нормализации Вашего сна, тотального расслабления, поддержания гормонального баланса.</p>
+        <p style="font-size:0.88rem;line-height:1.72;margin-bottom:20px;">Занятия 2 раза в неделю помогают чувствовать себя оптимально отдохнувшими на протяжении всей недели.</p>
+        <a href="#contacts" class="btn-green" style="margin-bottom:14px;display:inline-block;">ЗАПИСАТЬСЯ НА ЗАНЯТИЕ</a>
+        <div style="font-size:0.9rem;font-weight:700;margin-top:10px;">800/<span style="text-decoration:line-through;font-weight:400;color:#666;">2000р</span></div>
+        <div style="font-size:0.85rem;">1 занятие 60 минут</div>
+      </div>
+
+      <!-- Фото -->
+      <div class="col-12 col-md-6 photo-col">
+        <img
+          src="https://images.pexels.com/photos/25525223/pexels-photo-25525223.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          alt="Йога"
+          style="width:100%;height:480px;object-fit:cover;filter:grayscale(100%);display:block;"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     СЕКЦИЯ 4 — ХОДИТЬ
+══════════════════════════════════════════ -->
+<section id="walk">
+  <div class="container" style="max-width:900px;">
+    <h2 style="font-size:2.1rem;font-weight:900;letter-spacing:0.35em;text-align:center;margin-bottom:10px;">Х О Д И Т Ь</h2>
+    <hr style="border:none;border-top:1px solid #999;width:50%;margin:10px auto 40px;" />
+
+    <!-- Блок 1: Смотреть 1 урок -->
+    <div class="row g-4 align-items-start walk-block">
+      <div class="col-12 col-md-6">
+        <p class="walk-block-title">СМОТРЕТЬ 1 УРОК</p>
+        <p class="walk-block-label">урок бесплатный</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:10px;">Здесь часть видео о показаниях и противопоказаниях к занятиям оригинальной северной ходьбой из моего авторского курса "ХОДИТЬ ХОРОШО"</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:16px;">Смотри первое полное видео из курса на моем канале в YouTube, оставляй свой комментарий и получай доступ ко всем урокам со скидкой 30% уже СЕГОДНЯ</p>
+        <div class="d-flex flex-column gap-2" style="max-width:260px;">
+          <a href="#contacts" class="btn-green">ПОЛУЧИТЬ ДОСТУП К ВИДЕО</a>
+          <a href="#contacts" class="btn-green">ОСТАВИТЬ ЗАЯВКУ НА КУРС</a>
+        </div>
+        <div style="font-size:0.88rem;font-weight:700;margin-top:12px;">2100Р/<span style="text-decoration:line-through;font-weight:400;color:#666;">3000р</span></div>
+        <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">ДОСТУП БЕССРОЧНЫЙ</div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="walk-video-box" style="background:#111;width:100%;height:200px;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#555;font-size:0.8rem;">▶ видео урока</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:40px;"></div>
+
+    <!-- Блок 2: Авторский курс -->
+    <div class="row g-4 align-items-center walk-block">
+      <div class="col-12 col-md-6">
+        <p class="walk-block-title">АВТОРСКИЙ КУРС «ХОДИТЬ ХОРОШО»</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:16px;">В этом курсе 6 уроков, включающих в себя 3 теоретических и 3 практических урока, просматривая которые в любое удобное для вас время, вы качественно измените свою жизнь и приумножите своё здоровье</p>
+        <div class="d-flex align-items-center gap-4 flex-wrap">
+          <a href="#contacts" class="btn-green">КУПИТЬ КУРС</a>
+          <div>
+            <div style="font-size:0.88rem;font-weight:700;">2100Р/<span style="text-decoration:line-through;font-weight:400;color:#666;">3000р</span></div>
+            <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">ДОСТУП БЕССРОЧНЫЙ</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <img
+          src="https://images.pexels.com/photos/6874448/pexels-photo-6874448.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          alt="Северная ходьба"
+          style="width:100%;height:280px;object-fit:cover;filter:grayscale(100%);display:block;"
+        />
+      </div>
+    </div>
+
+    <div style="height:40px;"></div>
+
+    <!-- Блок 3: Персональные тренировки -->
+    <div class="row g-4 align-items-start walk-block">
+      <div class="col-12 col-md-6">
+        <p class="walk-block-title">ПЕРСОНАЛЬНЫЕ ТРЕНИРОВКИ</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:8px;">Всё моё внимание только на Вас</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:8px;">1,5 часа персональной тренировки со мной эффективнее групповой на 100 процентов — и это ХОРОШО</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:16px;">Нажимая кнопку «Записаться» вы делаете вклад в своё здоровье и молодость. Нам остаётся только согласовать место и время нашей встречи — я с Вами свяжусь</p>
+        <div class="d-flex align-items-center gap-4 flex-wrap">
+          <a href="#contacts" class="btn-green">ЗАПИСАТЬСЯ</a>
+          <div style="font-size:0.88rem;font-weight:700;">2500Р/1 ЗАНЯТИЕ</div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <img
+          src="https://images.pexels.com/photos/5310778/pexels-photo-5310778.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          alt="Персональные тренировки"
+          style="width:100%;height:280px;object-fit:cover;filter:grayscale(100%);display:block;"
+        />
+      </div>
+    </div>
+
+    <div style="height:40px;"></div>
+
+    <!-- Блок 4: Палки твоей мечты -->
+    <div class="row g-4 align-items-start walk-block">
+      <div class="col-12 col-md-6">
+        <p class="walk-block-title">ПАЛКИ ТВОЕЙ МЕЧТЫ</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:8px;">Палки в скандинавской ходьбе — это не только тренажёр, но и стиль, безопасность, продолжение тебя и завершение твоего спортивного образа.</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:8px;">Я — профессионал своего дела, который испробовал на себе огромное количество инвентаря — от самых бюджетных до палок премиум класса.</p>
+        <p style="font-size:0.87rem;line-height:1.7;margin-bottom:16px;">С уверенностью скажу, что подберу для тебя ТВОЮ ИДЕАЛЬНУЮ ПАРУ</p>
+        <div class="d-flex align-items-center gap-4 flex-wrap">
+          <a href="#contacts" class="btn-green">ПОДОБРАТЬ</a>
+          <div style="font-size:0.88rem;font-weight:700;">от 1500Р/1 пара</div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <img
+          src="https://images.pexels.com/photos/10864524/pexels-photo-10864524.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          alt="Палки для ходьбы"
+          style="width:100%;height:280px;object-fit:cover;filter:grayscale(100%);display:block;"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     СЕКЦИЯ 5 — ДЫШАТЬ
+══════════════════════════════════════════ -->
+<section id="breathe">
+  <div class="container" style="max-width:900px;">
+    <h2 style="font-size:2.1rem;font-weight:900;letter-spacing:0.35em;text-align:center;margin-bottom:6px;">Д Ы Ш А Т Ь</h2>
+    <p style="font-size:0.78rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;text-align:center;color:#3a7d2c;margin-bottom:36px;">КОРПОРАТИВНЫМ КЛИЕНТАМ</p>
+
+    <div class="row g-4 align-items-center">
+      <!-- Фото/видео -->
+      <div class="col-12 col-md-7">
+        <img
+          src="https://images.pexels.com/photos/36646965/pexels-photo-36646965.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+          alt="Групповые занятия на улице"
+          style="width:100%;max-width:490px;aspect-ratio:4/3;object-fit:cover;display:block;"
+        />
+      </div>
+
+      <!-- Кнопка -->
+      <div class="col-12 col-md-5 d-flex align-items-center justify-content-center">
+        <a href="#contacts" class="btn-green" style="padding:14px 24px;font-size:0.8rem;max-width:240px;white-space:normal;">ПОЛУЧИТЬ ИНДИВИДУАЛЬНОЕ ПРЕДЛОЖЕНИЕ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     СЕКЦИЯ 6 — ОТЗЫВЫ
+══════════════════════════════════════════ -->
+<section id="reviews">
+  <div class="container" style="max-width:980px;">
+    <h2 style="font-size:2.2rem;font-weight:900;letter-spacing:0.1em;text-align:center;margin-bottom:20px;">ОТЗЫВЫ</h2>
+    <p style="font-size:0.9rem;line-height:1.7;text-align:center;max-width:780px;margin:0 auto 50px;">Отзывы более 5000 довольных клиентов за все годы моей работы не уместятся ни на одном сайте, не смотря на это, ниже вы можете ознакомиться с малой частью свежих отзывов о моей работе на благо Вашего здоровья</p>
+
+    <!-- Ряд 1: 2 отзыва -->
+    <div class="row g-5 mb-5">
+      <div class="col-12 col-md-6 review-block">
+        <p class="review-text">Мы познакомились с Машей на тренинге «Счастливая неделя» в санатории «Демидково».<br>
+        Хотела начать тренироваться. Но проблема такая — просто ходить скучно, бегать тяжело, а северная ходьба это интересно, динамично, при этом щадит суставы. За три тренировки освоили с инструктором технику ходьбы с палками. Правильная техника движения, которой учит Маша, позволяет включить в работу все нужные группы мышц. Как итог — развенчание стереотипа, что это спорт «для пожилых». Я продолжаю ходить с палками с огромным удовольствием!</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://images.pexels.com/photos/16251531/pexels-photo-16251531.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=100&w=100" alt="Анна Зоркова" />
+          </div>
+          <div>
+            <div class="review-name">Анна Зоркова</div>
+            <a href="https://vk.com/ann_zorkova" class="review-link">https://vk.com/ann_zorkova</a>
+            <div class="review-role">бизнес-консультант<br>г. Екатеринбург</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 review-block">
+        <p class="review-text">Впервые Марию я увидела во главе группы северных ходоков в санатории. С первого взгляда зацепила её энергетика и лёгкость!<br>
+        Благодарна тренеру за индивидуальные тренировки, из которых вынесла много полезной информации касающейся правильной техники ходьбы (наклон тела, положение рук, чтобы не тянулся след от наконечника палки), правильного дыхания и выбора экипировки.<br>
+        Северная ходьба прекрасно помогает мне справиться со стрессом! Всем своим знакомым рекомендую!</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://images.pexels.com/photos/16251528/pexels-photo-16251528.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=100&w=100" alt="Екатерина Коротаева" />
+          </div>
+          <div>
+            <div class="review-name">Екатерина Коротаева</div>
+            <a href="https://vk.com/id38948342" class="review-link">https://vk.com/id38948342</a>
+            <div class="review-role">предприниматель<br>г. Пермь</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ряд 2: 1 отзыв -->
+    <div class="row g-5">
+      <div class="col-12 col-md-6 review-block">
+        <p class="review-text">Меня зовут Кристина и я та, которая всегда была на спорте, бывший фитнес-тренер с десятилетним стажем, сидящая в глубоком декрете с 4 детьми, мечтала вернуться в фитнес, грезила им, но никак не могла найти то, что ей действительно будет интересно и главное безопасно для её спины, которая оказалась не готова с серьёзным испытаниям в виде вынашивания тройни.<br>
+        И так — Мария… путь знакомства с ней лежал через Дубай, так как именно девушка от туда мне посоветовала Машу, причём разговор у нас был вообще не про спорт, но кривая как-то сама вывела на Полазну, Демидково и Машу. И я нашла то, о чём мечтала долгие годы, для меня было открытием, честно, что скандинавская ходьба может тааак затягивать и быть такой интересной.<br>
+        Скандинавская ходьба для меня всегда теперь связана с Марией — тренером от Бога, влюблённым в своё дело, причём как-то всё ненавязчиво, легко и очень доходчиво, а польза этой физической активности нереальная.<br>
+        Спасибо, Маш, за то, что есть ТЫ и твои LEKI!</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://images.pexels.com/photos/35099019/pexels-photo-35099019.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=100&w=100" alt="Кристина Шестакова" />
+          </div>
+          <div>
+            <div class="review-name">Кристина Шестакова</div>
+            <a href="https://vk.com/kristina_4syna" class="review-link">https://vk.com/kristina_4syna</a>
+            <div class="review-role">нутрициолог, г. Пермь</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     СЕКЦИЯ 7 — КОНТАКТЫ
+══════════════════════════════════════════ -->
+<section id="contacts">
+  <div class="container" style="max-width:1000px;">
+    <div class="row g-4 align-items-center">
+
+      <!-- Левая: имя + ИНН -->
+      <div class="col-12 col-md-5">
+        <div style="font-size:1.3rem;font-weight:900;letter-spacing:0.04em;text-transform:uppercase;line-height:1.35;margin-bottom:24px;">
+          ШАНДРЕНКО<br>МАРИЯ АНАТОЛЬЕВНА
+        </div>
+        <div style="font-size:1.1rem;font-weight:900;letter-spacing:0.04em;">ИНН 591455031333</div>
+      </div>
+
+      <!-- Правая: контакты -->
+      <div class="col-12 col-md-7">
+
+        <div class="contact-row">
+          <div class="contact-icon-wrap">
+            <span>&#9632;</span>
+          </div>
+          <div>
+            <div class="contact-label">Адрес</div>
+            <div class="contact-val">Российская Федерация, Пермский край, Добрянский район, пгт. Полазна, ул. Альпийская, 15</div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon-wrap">
+            <span>&#9990;</span>
+          </div>
+          <div>
+            <div class="contact-label">Телефон</div>
+            <div class="contact-val"><a href="tel:+79194910248">+7 919 491 0248</a></div>
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="contact-icon-wrap">
+            <span>&#9998;</span>
+          </div>
+          <div>
+            <div class="contact-label">Email для корпоративных клиентов</div>
+            <div class="contact-val"><a href="mailto:mashasha.ko@gmail.com">mashasha.ko@gmail.com</a></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

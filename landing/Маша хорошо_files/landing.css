@@ -1,0 +1,276 @@
+/* ==========================================================
+   Стили лендинга. Все правила ограничены обёрткой .landing-content,
+   поэтому не конфликтуют с остальными стилями EJS-шаблона.
+   Требуется подключённый Bootstrap 5 (CSS).
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
+
+.site_url {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.landing-content {
+    background-color: #ebe8e1;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #212121;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+/* ---------- Секции ---------- */
+
+.landing-content .landing-section {
+    padding: 64px 0;
+}
+
+#about {
+    padding-top: 0px
+}
+
+#about h2 {
+    font-size: 34px;
+}
+
+.landing-content .landing-section--contacts {
+    padding: 48px 0;
+}
+/* ---------- модалка ---------- */
+.landing-content .modal-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    object-position: right center;
+}
+
+.landing-content .form-check-input:checked {
+    background-color: #000 !important;
+    border-color: #000 !important;
+}
+
+.landing-content .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, .1);
+}
+/* ---------- конец модалки ---------- */
+
+/* ---------- Заголовки ---------- */
+
+.landing-content .landing-heading {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.25;
+}
+
+.landing-content .landing-heading--spaced {
+    letter-spacing: 0.45em;
+    margin-right: -0.45em; /* компенсация разрядки для точного центрирования */
+}
+
+.landing-content .landing-heading--contacts {
+    font-size: 26px;
+}
+
+.landing-content .landing-subheading {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+
+.landing-content .landing-subheading--small {
+    font-size: 16px;
+    letter-spacing: 0.03em;
+}
+
+/* ---------- Текст ---------- */
+
+.landing-content .landing-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000;
+}
+
+.landing-content .landing-muted {
+    font-size: 16px;
+    color: #9e9e9e;
+}
+
+.landing-content .landing-price {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.landing-content .landing-price--small {
+    font-size: 16px;
+}
+
+.landing-content s {
+    color: #212121;
+}
+
+/* ---------- Кнопки ---------- */
+
+.landing-content .btn-landing {
+    background-color: #4caf50;
+    border: 1px solid #43a047;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 8px 18px;
+    text-transform: uppercase;
+}
+
+.landing-content .btn-landing:hover,
+.landing-content .btn-landing:focus,
+.landing-content .btn-landing:active {
+    background-color: #43a047;
+    border-color: #388e3c;
+    color: #ffffff;
+}
+
+.landing-content .btn-landing--wide {
+    padding: 12px 28px;
+    line-height: 1.4;
+}
+
+/* ---------- Видео ---------- */
+
+.landing-content .landing-video {
+    display: block;
+    background-color: #000000;
+}
+
+/* ---------- Секция "Давай начнем" ---------- */
+
+.landing-content .landing-circles {
+    width: 100%;
+}
+
+.landing-content .start-item {
+    border-top: 1px solid #d5d3ce;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.landing-content .start-icon {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1;
+    color: #1a1a1a;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.landing-content .start-item-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+/* ---------- Секция "Ходить" ---------- */
+
+.landing-content .walk-row {
+    margin-bottom: 56px;
+}
+
+/* ---------- Секция "Отзывы" ---------- */
+
+.landing-content .review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.landing-content .review-author {
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.landing-content .review-link {
+    color: #212121;
+    text-decoration: underline;
+}
+
+.landing-content .review-link:hover {
+    color: #000000;
+}
+
+/* смещение третьего отзыва влево, как на макете */
+@media (min-width: 768px) {
+    .landing-content .review-offset {
+        margin-top: 48px;
+    }
+}
+
+/* ---------- Секция контактов ---------- */
+
+.landing-content .contact-item {
+    margin-bottom: 24px;
+}
+
+.landing-content .contact-icon {
+    width: 42px;
+    height: 42px;
+    background-color: #111111;
+    border-radius: 50%;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+.landing-content .contact-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.landing-content .contact-value {
+    font-size: 16px;
+    color: #212121;
+}
+
+.landing-content .contact-link {
+    color: #212121;
+    text-decoration: underline;
+}
+
+.landing-content .contact-link:hover {
+    color: #000000;
+}
+
+#move{
+    background-color: #e8e5e5;
+}
+
+#walk{
+     background-color: #e8e5e5;
+ }
+
+#breath{
+    background-color: #e8e5e5;
+}
+
+#reviews{
+    background-color: #e8e5e5;
+}
+
+#contacts{
+    background-color: #e8e5e5;
+}
