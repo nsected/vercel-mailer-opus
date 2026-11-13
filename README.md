@@ -1,10 +1,11 @@
 # Лендинг и Express API для заявок
 
-Проект запускается с одним Express-приложением на Vercel, Render или собственном VPS.
+Проект запускается с одним Express-приложением на Vercel, Netlify, Render или собственном VPS.
 
 | Платформа | Запуск | Кто раздаёт `public/` |
 | --- | --- | --- |
 | Vercel | Vercel импортирует `server.js` как Function с Fluid Compute | Vercel CDN |
+| Netlify | `netlify/functions/api.mjs` вызывает Express через `serverless-http` | Netlify CDN + Function |
 | Render / VPS | `npm start` запускает `node server.js` | Express |
 
 `server.js` содержит API и `express.static(public)`. На Vercel файлы из `public/` раздаёт CDN платформы. На Netlify статика публикуется из `public/`, а существующее Express-приложение вызывается через Netlify Function и `serverless-http`. При прямом запуске Node.js Express раздаёт весь сайт и слушает `PORT` на `0.0.0.0`.
@@ -19,7 +20,9 @@ src/services/formHandler.js
                          Проверка формы и подготовка письма
 src/services/smtpMailer.js
                          Отправка через Gmail SMTP и защита от повторов
-vercel.json              Настройки Vercel Function и совместимые URL форм\nnetlify.toml             Публикация public/, Function и rewrite-маршруты Netlify\nnetlify/functions/api.mjs Адаптер существующего Express app для Netlify Functions
+vercel.json              Настройки Vercel Function и совместимые URL форм
+netlify.toml             Публикация public/, Function и rewrite-маршруты Netlify
+netlify/functions/api.mjs Адаптер существующего Express app для Netlify Functions
 ```
 
 ## API
