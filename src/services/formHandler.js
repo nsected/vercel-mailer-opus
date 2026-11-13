@@ -107,7 +107,7 @@ export async function processFormData(body = {}) {
     rawMessage ? `Сообщение: ${rawMessage}` : null,
     `Время заявки: ${moscowTime} (МСК)`,
     "",
-    `Отправлено через Vercel Fluid Compute`
+    `Отправлено с сайта`
   ].filter(Boolean).join("\n");
 
   const htmlContent = `
@@ -167,7 +167,7 @@ export async function processFormData(body = {}) {
 
       <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 20px 0;" />
       <p style="margin: 0; font-size: 12px; color: #9ca3af; text-align: center;">
-        Заявка с сайта на Vercel Fluid Compute • Gmail SMTP
+        Заявка с сайта • Gmail SMTP
       </p>
     </div>
   `;
@@ -192,80 +192,3 @@ export async function processFormData(body = {}) {
   };
 }
 
-/* ------------------------------------------------------------------ */
-/*  Universal Request Handler (Supports Web Standard & Node.js req/res)*/
-/* ------------------------------------------------------------------ */
-export async function handleFormRequest(reqOrRequest, optionalRes) {
-  log("━━━ Incoming form request received ━━━");
-
-  // Case A: Classic Node.js (req, res)
-  if (optionalRes && typeof optionalRes.status === "function") {
-    const req = reqOrRequest;
-    const res = optionalRes;
-
-    let body = req.body;
-    if (!body || Object.keys(body).length === 0) {
-      body = await parseNodeStream(req);
-    }
-
-    const { httpStatus, data } = await processFormData(body);
-    return res.status(httpStatus).json(data);
-  }
-
-  // Case B: Web Standard Request (Fetch API)
-  const request = reqOrRequest;
-  let body = {};
-
-  try {
-    const contentType = request.headers?.get("content-type") || "";
-
-    if (contentType.includes("application/json")) {
-      body = await request.json();
-    } else if (contentType.includes("application/x-www-form-urlencoded")) {
-      const text = await request.text();
-      const params = new URLSearchParams(text);
-      for (const [k, v] of params.entries()) {
-        body[k] = v;
-      }
-    } else {
-      // Fallback: try json, else text
-      try {
-        body = await request.json();
-      } catch {
-        const text = await request.text();
-        const params = new URLSearchParams(text);
-        for (const [k, v] of params.entries()) {
-          body[k] = v;
-        }
-      }
-    }
-  } catch (err) {
-    logErr("Failed to parse request body:", err.message);
-    return Response.json(
-      { status: "error", message: "Не удалось разобрать тело запроса." },
-      { status: 400 }
-    );
-  }
-
-  const { httpStatus, data } = await processFormData(body);
-  return Response.json(data, { status: httpStatus });
-}
-
-/* Helper to read stream if req.body is undefined in Node.js */
-function parseNodeStream(req) {
-  return new Promise((resolve) => {
-    let raw = "";
-    req.on("data", (chunk) => { raw += chunk; });
-    req.on("end", () => {
-      try {
-        resolve(JSON.parse(raw));
-      } catch {
-        const params = new URLSearchParams(raw);
-        const obj = {};
-        for (const [k, v] of params.entries()) obj[k] = v;
-        resolve(obj);
-      }
-    });
-    req.on("error", () => resolve({}));
-  });
-}

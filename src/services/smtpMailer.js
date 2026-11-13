@@ -11,7 +11,7 @@ function logErr(...args) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  In-memory idempotency cache (lives with warm Fluid instance)      */
+/*  In-memory idempotency cache (lives in the current process)       */
 /* ------------------------------------------------------------------ */
 const seen = new Map(); // idempotencyKey → { status, messageId, ts, message, retryable }
 const CACHE_TTL_MS = 10 * 60_000; // 10 minutes
@@ -28,7 +28,7 @@ function pruneCache() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Transporter pool (reused across warm invocations in Fluid)        */
+/*  Transporter pool (reused while the process is running)            */
 /* ------------------------------------------------------------------ */
 let transporter = null;
 let transporterCreatedAt = null;

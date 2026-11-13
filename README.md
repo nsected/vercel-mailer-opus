@@ -1,97 +1,76 @@
-# 📨 Vercel Mailer & Landing — сайт и отправка заявок через Gmail SMTP
+# Лендинг и Express API для заявок
 
-Полноценный лендинг «Ходить хорошо» со статической раздачей через Vercel, формами на Bootstrap и раздельной архитектурой обработки заявок на Serverless Functions (**Vercel Fluid Compute**).
+Проект запускается с одним Express-приложением на Vercel, Render или собственном VPS.
 
----
+| Платформа | Запуск | Кто раздаёт `public/` |
+| --- | --- | --- |
+| Vercel | Vercel импортирует `server.js` как Function с Fluid Compute | Vercel CDN |
+| Render / VPS | `npm start` запускает `node server.js` | Express |
 
-## Архитектура Backend API
+`server.js` всегда содержит API и `express.static(public)`. При развёртывании на Vercel middleware для статики игнорируется платформой, поэтому Vercel сам раздаёт файлы из `public/`. При прямом запуске Node.js тот же middleware раздаёт весь сайт, а Express слушает `PORT` на `0.0.0.0`.
 
-Логика бэкенда разделена на фасад и два изолированных модуля в `api/lib/`:
+## Структура
 
-```
-┌──────────────────────────────────────────────┐
-│     Веб-форма лендинга                       │
-└──────────────────────┬───────────────────────┘
-                       │ POST /api/send
-                       ▼
-┌──────────────────────────────────────────────┐
-│             api/send.js (Фасад)              │ ── Принимает HTTP-запрос (Web Standard / Node.js)
-└──────────────────────┬───────────────────────┘ ── Логирует входящий вызов и делегирует
-                       │
-                       ▼
-┌──────────────────────────────────────────────┐
-│          api/lib/formHandler.js              │ ── 1. Разбор JSON и URL-encoded данных
-│          (Обработчик веб-форм)               │ ── 2. Проверка honeypot `site_url` (защита от ботов)
-└──────────────────────┬───────────────────────┘ ── 3. Валидация обязательных полей
-                       │                         ── 4. Формирование темы и HTML/текста письма
-                       │ sendEmail(...)
-                       ▼
-┌──────────────────────────────────────────────┐
-│          api/lib/smtpMailer.js               │ ── 1. Ленивый пул Nodemailer (Gmail SMTP 465)
-│          (Почтовый SMTP-сервис)              │ ── 2. Кэш идемпотентности (Fluid warm instance)
-└──────────────────────┬───────────────────────┘ ── 3. Отправка и классификация ошибок (temporary / permanent)
-                       │ TLS / SMTP (порт 465)
-                       ▼
-                 Gmail SMTP Сервер
-                (smtp.gmail.com:465)
+```text
+public/                  HTML, CSS, JavaScript, изображения и видео лендинга
+server.js                Express app и старт HTTP-сервера вне Vercel
+src/routes/api.js        HTTP-маршруты API
+src/services/formHandler.js
+                         Проверка формы и подготовка письма
+src/services/smtpMailer.js
+                         Отправка через Gmail SMTP и защита от повторов
+vercel.json              Настройки Vercel Function и совместимые URL форм
 ```
 
-1. **`api/send.js`** — публичный фасад (Serverless Function эндпоинт Vercel):
-   - Принимает запросы по адресу `/api/send`.
-   - Поддерживает как стандартный Web Standard Fetch API (`POST(request)`), так и классический Node.js `handler(req, res)`.
-   - Логирует каждый входящий запрос с отметкой времени.
+## API
 
-2. **`api/lib/formHandler.js`** — приём и валидация форм:
-   - Извлекает поля формы (поддерживает `application/json` и `application/x-www-form-urlencoded`).
-   - Проверяет поле-ловушку `site_url` (honeypot): спам-боты тихо отсекаются с кодом 200 без отправки писем.
-   - Валидирует поля (имя обязательно, телефон или email обязателен).
-   - Собирает тему и красивое HTML/plain-text письмо с кликабельными ссылками на звонок и переход в WhatsApp.
-   - Передает подготовленные данные в `smtpMailer.js`.
+- `GET /api/send` — проверка доступности API.
+- `POST /api/send` — приём заявки в JSON или `application/x-www-form-urlencoded`.
+- `GET` и `POST` на `/send-lead` и `/send-lead-course` — совместимые короткие URL.
 
-3. **`api/lib/smtpMailer.js`** — почтовый транспорт:
-   - Ленивая инициализация транспортера Nodemailer с безопасным переиспользованием в warm-инстансах Vercel Fluid Compute.
-   - In-memory кэш идемпотентности `idempotencyKey` на 10 минут (предотвращает повторную отправку одинаковых писем).
-   - Классификация ошибок: временные сетевые проблемы и SMTP 4xx возвращают `retryable: true` для повторных попыток клиентом, а ошибки авторизации 5xx — как постоянные.
-   - Полное сквозное логирование всех этапов отправки в консоль сервера.
+Обработчик проверяет honeypot `site_url`, требует имя и телефон либо email, затем отправляет письмо через Gmail SMTP. Тело запроса ограничено 100 КБ.
 
----
+## Переменные окружения
 
-## Настройка переменных окружения
-
-В файле `.env` (создается по шаблону `.env.example`):
+Скопируйте `.env.example` в `.env` и укажите значения для локальной разработки:
 
 ```ini
-# ── SMTP (Gmail) ─────────────────────────────────────────
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
 SMTP_SECURE=true
 SMTP_USER=your-email@gmail.com
-SMTP_PASS=abcd efgh ijkl mnop
-
-# ── Получатель заявок ────────────────────────────────────
+SMTP_PASS=your-app-password
 RECIPIENT_EMAIL=recipient@example.com
-
-# ── Отладка в консоли Vercel (по умолчанию включена) ─────
-DEBUG=true
 ```
 
----
+`.env` исключён из Git. На Vercel и Render задайте те же переменные в настройках сервиса. На VPS передайте их через systemd, Docker, PM2 или переменные окружения процесса.
 
-## Локальный запуск
+## Локальная разработка
 
 ```bash
-# 1. Установка зависимостей
 npm install
-
-# 2. Запуск локального сервера Vercel
-npx vercel dev
+npm run dev
 ```
 
-Приложение доступно по адресу [http://localhost:3000](http://localhost:3000). При любой отправке формы в терминале сразу отображаются подробные логи:
+Сервер доступен на `http://localhost:3000`; изменения в серверном коде перезапускают процесс. Для запуска без watch-режима с локальным `.env` используйте `npm run start:local`.
+
+## Деплой на Vercel
+
+Vercel автоматически использует экспорт Express app из `server.js`, раздаёт `public/` через CDN и запускает API на Fluid Compute. Задайте SMTP-переменные в настройках проекта и выполните:
+
+```bash
+npm run deploy
 ```
-[send facade] Incoming POST /api/send
-[formHandler] Processing form payload: { name: "...", phone: "..." }
-[formHandler] Forwarding to smtpMailer (idempotencyKey: ...)…
-[smtpMailer] Connecting to SMTP and sending mail to: ...
-[smtpMailer] ✅ SMTP accepted! messageId=...
+
+Для `vercel dev` в Vercel Dashboard не задавайте Development Command, который вызывает `vercel dev`: это создаёт рекурсивный запуск.
+
+## Деплой на Render или VPS
+
+На Render создайте Node Web Service со значениями:
+
+```text
+Build Command: npm ci
+Start Command: npm start
 ```
+
+Render передаст порт в `PORT`; на VPS по умолчанию используется порт `3000`, либо укажите свой `PORT`. Express в обоих случаях раздаёт и API, и всё содержимое `public/`.

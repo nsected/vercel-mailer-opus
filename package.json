@@ -3,17 +3,21 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Minimal contact form with Gmail SMTP via Vercel Fluid Compute",
+  "description": "Express contact form with Gmail SMTP for Vercel, Render, or a VPS",
   "engines": {
-    "node": ">=20.x"
+    "node": ">=20.6.0"
   },
   "scripts": {
-    "develop": "vercel dev",
     "build": "echo 'No build step required'",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "dev": "node --env-file=.env --watch server.js",
+    "develop": "npm run dev",
+    "start": "node server.js",
+    "start:local": "node --env-file=.env server.js"
   },
   "dependencies": {
-    "nodemailer": "^6.9.0"
+    "nodemailer": "^6.9.0",
+    "express": "^5.3.0"
   },
   "devDependencies": {
     "vercel": "^65.15.0"
